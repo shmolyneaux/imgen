@@ -16,10 +16,10 @@ Personal playground for generating images in a functional style in Python. Not m
 # Code Example
 The following code snippet from `demo_wallpaper_small.py`:
 ```python
-genImage(layer(constant(10,10,10,255),
+genImage(layer(constant(10, 10, 10, 255),
                mask(radialGradient(240, 135, 160,
-                                   (60,60,60,255),
-                                   (20,20,20,255)),
+                                   (60, 60, 60, 255),
+                                   (20, 20, 20, 255)),
                     pinStripe(1, 15, (255,255,255,255), (0,0,0,0)))),
          480, 270, "out/wallpaper_small.png")
 ```
@@ -39,10 +39,10 @@ From `demo_edge_detect.py`
 ```python
 def detectEdges(inputFile, outputFile):
     width, height = Image.open(inputFile).size
-    genImage( conv(tex(inputFile, "RGB"), [[0, 1,0],
-                                           [1,-4,1],
-                                           [0, 1,0]]),
-              width, height, outputFile )
+    genImage(conv(tex(inputFile, "RGB"), [[0, 1,0],
+                                          [1,-4,1],
+                                          [0, 1,0]]),
+             width, height, outputFile)
 ```
 ![](https://github.com/WimbledonLabs/imgen/raw/master/out/baboon_edge.png)
 
@@ -64,15 +64,14 @@ From `demo_mask.py`
 ```python
 # Since shapes like circles aren't supported yet, we have to create them
 # mathemagically by thresholding a radial gradient
-circleMask = thresh(radialGradient(256, 256, 200, (255, 255, 255),
+circleMask = thresh(radialGradient(256, 256, 200, (255,255,255),
                                    (0,0,0)),
                     (1,1,1), pos=(255,255,255,255), neg=(255,255,255,0))
 
 genImage(layer(tex("ref/boat.png", mode="RGBA"),
                mask(tex("ref/baboon.png", mode="RGBA"), 
                     circleMask)),
-         512, 512, "out/mask2.png", mode="RGB" )
-
+         512, 512, "out/mask2.png", mode="RGB")
 ```
 ![](https://github.com/WimbledonLabs/imgen/raw/master/out/mask2.png)
 
@@ -81,6 +80,10 @@ genImage(layer(tex("ref/boat.png", mode="RGBA"),
 From `demo_inverse.py`
 
 ![](https://github.com/WimbledonLabs/imgen/raw/master/out/baboon_inverted.png)
+
+
+#### Note on Coding Style
+Split lines follow the practice of indenting up to the start of the enclosing brace. This is similar in style to what I've seen in lisp. Spaces are absent in tuples containing only 0's and 255's since they add to visual noise - attention doesn't need to be drawn to `(255,255,255,255)`
 
 
 ## TODO
