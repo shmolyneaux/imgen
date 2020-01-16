@@ -12,6 +12,11 @@ Personal playground for generating images in a functional style in Python. Not m
 - Inverting images
 - ...and Stripes 
 
+# Getting Started
+Install Pillow
+```bash
+python3.7 -m pip install Pillow
+```
 
 # Code Example
 The following code snippet from `demo_wallpaper_small.py`:
